@@ -76,6 +76,25 @@ router.get('/auth', authMiddleware, (req, res) => {
     }
 })
 
+// Check if the link is valid
+router.get('/check-link', async (req, res, next) => {
+    try {
+        const {id, token} = req.query
+
+        const candidate = await User.findOne({where: {id: id}})
+        if(!candidate) {
+            return res.status(400).json({error: "User with this id does not exist"})
+        }
+
+        const secret = process.env.SECRET_KEY + candidate.password
+
+        const payload = jwt.verify(token, secret)
+        return res.json({linkValid: true})
+    } catch (e) {
+        return res.json({linkValid: false})
+    }
+})
+
 router.get('/:id', async (req, res) => {
     try {
         const {id} = req.params
@@ -92,6 +111,58 @@ router.get('/:id', async (req, res) => {
         return res.json(user)
     } catch (e) {
         return res.status(500).json({caught: e.message})
+    }
+})
+
+// Forgot password functionality
+router.post('/forgot-password', async (req, res, next) => {
+    try {
+        const {email} = req.body
+
+        const candidate = await User.findOne({where: {email: email}})
+        if(!candidate) {
+            return res.json({message: "User not found"})
+        }
+
+        // Create a one-time link
+        const secret = process.env.SECRET_KEY + candidate.password
+
+        const payload = {
+            email: candidate.email,
+            id: candidate.id
+        }
+
+        const token = jwt.sign(payload, secret, {expiresIn: '10m'})
+        const link = {id: candidate.id, token: token}
+
+        return res.json({message: "Password reset link has been sent to your email", link: link})
+    } catch (e) {
+        return res.status(500).json({error: e.message})
+    }
+})
+
+router.post('/reset-password', async (req, res, next) => {
+    try {
+        const {newPassword, id, token} = req.body
+
+        const candidate = await User.findOne({where: {id: id}})
+        if(!candidate) {
+            return res.json({message: "Something went wrong..."})
+        }
+
+        const secret = process.env.SECRET_KEY + candidate.password
+
+        const payload = jwt.verify(token, secret)
+
+        const user = await User.findOne({where: {id: payload.id}})
+
+        const hashedPassword = await bcrypt.hash(newPassword, 4)
+        user.password = hashedPassword
+        await user.save()
+
+        res.json("Success")
+    } catch (e) {
+        return res.status(500).json({error: e.message})
     }
 })
 
