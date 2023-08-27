@@ -1,0 +1,26 @@
+.outer {
+    margin: 20px;
+    cursor: pointer;
+}
+
+.imageWrapper {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.imageWrapper > img {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.panelWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name {
+    margin: 0;
+}

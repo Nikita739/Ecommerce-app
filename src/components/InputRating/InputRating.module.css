@@ -1,0 +1,35 @@
+.outer {
+    border: 1px solid #000;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 100%;
+    padding: 15px 30px;
+}
+
+.textarea {
+    display: block;
+    padding: 20px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.submit {
+    padding: 15px 30px;
+    background-color: transparent;
+    border-radius: 15px;
+    transition: all 0.1s linear;
+    cursor: pointer;
+}
+
+.submit:hover {
+    transform: translateY(-4px);
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+}
+
+.inputPair {
+    margin-bottom: 30px;
+}
+
+.inputPair > div:last-child {
+    margin-top: 10px;
+}

@@ -1,0 +1,48 @@
+.outer {
+    border: 1px solid #000;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+    padding: 15px 30px;
+    margin-bottom: 20px;
+}
+
+.outer:first-child {
+    margin-top: 40px;
+}
+
+.headerWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message {
+    margin-top: 30px;
+}
+
+.delete {
+    margin: 30px auto 0;
+    display: block;
+    background: rgb(211, 47, 47);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.1s linear;
+}
+
+.delete:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transform: translateY(-5px);
+}
+
+@media screen and (max-width: 700px) {
+    .headerWrapper {
+        flex-direction: column;
+        align-items: normal;
+        justify-content: normal;
+    }
+}

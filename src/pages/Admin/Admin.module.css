@@ -1,0 +1,20 @@
+.outer {
+    padding: 50px 100px;
+}
+
+.add {
+    display: block;
+    padding: 15px 40px;
+    background-color: transparent;
+    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid #000;
+    border-radius: 15px;
+    transition: all 0.1s linear;
+}
+
+.add:hover {
+    cursor: pointer;
+    transform: translateY(-4px);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

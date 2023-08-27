@@ -1,0 +1,18 @@
+.outer {
+    margin-bottom: 50px;
+}
+
+.title {
+    margin-bottom: 50px;
+}
+
+.cards {
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
+    padding: 0 30px;
+}
+
+.noItems {
+    font-size: 30px;
+    text-align: center;
+}

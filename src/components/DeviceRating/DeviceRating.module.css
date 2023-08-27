@@ -1,0 +1,13 @@
+.outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.ratings {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

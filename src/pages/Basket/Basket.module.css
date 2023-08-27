@@ -1,0 +1,15 @@
+.outer {
+    padding: 50px 100px;
+}
+
+.total {
+    margin-top: 40px;
+    text-align: right;
+    font-size: 25px;
+}
+
+@media screen and (max-width: 500px) {
+    .outer {
+        padding: 50px 40px;
+    }
+}

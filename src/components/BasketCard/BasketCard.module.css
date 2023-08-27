@@ -1,0 +1,75 @@
+.outer {
+    background-color: #f3f3f3;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 20px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.deviceName {
+    font-size: 20px;
+}
+
+.deviceInfo {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.closeBtn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.entering {
+    /*animation: show-card 0.1s linear;*/
+}
+
+.entered {
+
+}
+
+.exiting {
+    animation: hide-card 0.5s linear;
+}
+
+.exited {
+    
+}
+
+.closeBtn:hover {
+    background-color: lightgrey;
+}
+
+@keyframes hide-card {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-300px);
+    }
+}
+
+@keyframes show-card {
+    0% {
+        opacity: 0;
+        transform: translateX(-300px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

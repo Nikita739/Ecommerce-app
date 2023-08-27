@@ -1,0 +1,81 @@
+.firstRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin: auto;
+}
+
+.addToBasket {
+    display: block;
+    max-width: 400px;
+    width: 100%;
+    margin: 30px auto;
+    background-color: #008CBA;
+    padding: 15px 30px;
+    color: white;
+    font-size: 25px;
+    border: none;
+    border-radius: 20px;
+    transition: all 0.1s linear;
+    cursor: pointer;
+}
+
+.addToBasket:hover {
+    transform: translateY(-5px);
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+}
+
+.addToBasket.disabled {
+    background-color: #b8b6b6;
+}
+
+.addToBasket.disabled:hover {
+    transform: translateY(0);
+    box-shadow: none;
+    cursor: auto;
+}
+
+.infoWrapper > h1 {
+    font-size: 40px;
+}
+
+.infoWrapper > p {
+    font-size: 20px;
+}
+
+.secondRow {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.displayInfo {
+    list-style-type: none;
+    margin-top: 50px;
+}
+
+.displayInfo > span {
+    margin-bottom: 15px;
+}
+
+.displayInfo > li {
+    background-color: white;
+    padding: 10px 20px;
+}
+
+.displayInfo > li:nth-child(odd) {
+    background-color: lightgrey;
+}
+
+@media screen and (max-width: 830px) {
+    .firstRow {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .secondRow {
+        margin-top: 10px;
+    }
+}

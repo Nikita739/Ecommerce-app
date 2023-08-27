@@ -1,0 +1,28 @@
+.outer {
+    border: 1px solid lightgrey;
+    border-radius: 15px;
+    list-style-type: none;
+    padding: 0;
+    overflow-x: auto;
+    margin: 0;
+}
+
+.outer > li {
+    width: 100%;
+    height: 50px;
+    overflow-x: hidden;
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px lightgrey solid;
+    cursor: pointer;
+}
+
+.outer > li:last-child {
+    border-bottom: none;
+}
+
+.outer > li.active {
+    background-color: deepskyblue;
+    color: white;
+}

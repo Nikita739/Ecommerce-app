@@ -1,0 +1,21 @@
+.outer {
+    margin-top: 40px;
+}
+
+.infoWrapper {
+
+}
+
+.infoRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.infoRow > .infoItem {
+    flex: 4;
+}
+
+.infoRow > button {
+    flex: 2;
+}
