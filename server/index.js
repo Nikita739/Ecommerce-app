@@ -18,6 +18,10 @@ app.use(express.urlencoded({extended: false}))
 app.use(fileUpload({}))
 app.use('/api', router)
 
+app.get("/home", (req, res) => {
+    return res.json({message: "Hello world!"});
+})
+
 const start = async () => {
     try {
         await sequelize.authenticate()
