@@ -1,9 +1,11 @@
 import axios from "axios";
 import {drawerClasses} from "@mui/material";
 
+const baseUrl = "https://online-shop-api-7gcz.onrender.com";
+
 export const login = async (email, password) => {
     try {
-        const res = await axios.post("http://localhost:5000/api/user/login", {
+        const res = await axios.post(`${baseUrl}/api/user/login`, {
             email: email,
             password: password
         })
@@ -18,7 +20,7 @@ export const login = async (email, password) => {
 
 export const register = async (email, password, username) => {
     try {
-        const res = await axios.post("http://localhost:5000/api/user/registration", {
+        const res = await axios.post(`${baseUrl}/api/user/registration`, {
             email: email,
             password: password,
             nickname: username
@@ -34,7 +36,7 @@ export const register = async (email, password, username) => {
 
 export const getTypes = async () => {
     try {
-        const res = await axios.get("http://localhost:5000/api/type")
+        const res = await axios.get(`${baseUrl}/api/type`)
         return res.data
     } catch (e) {
         console.log(e)
@@ -44,7 +46,7 @@ export const getTypes = async () => {
 
 export const getBrands = async () => {
     try {
-        const res = await axios.get("http://localhost:5000/api/brand")
+        const res = await axios.get(`${baseUrl}/api/brand`)
         return res.data
     } catch (e) {
         console.log(e)
@@ -54,7 +56,7 @@ export const getBrands = async () => {
 
 export const getDevices = async (typeId, brandId, limit, page) => {
     try {
-        let url = "http://localhost:5000/api/device"
+        let url = `${baseUrl}/api/device`
 
         const config = {
             url: url,
@@ -77,7 +79,7 @@ export const getDevices = async (typeId, brandId, limit, page) => {
 
 export const getTypeById = async (id) => {
     try {
-        const res = await axios.get(`http://localhost:5000/api/type/${id}`)
+        const res = await axios.get(`${baseUrl}/api/type/${id}`)
         return res.data
     } catch (e) {
         console.log(e)
@@ -87,7 +89,7 @@ export const getTypeById = async (id) => {
 
 export const getBrandById = async (id) => {
     try {
-        const res = await axios.get(`http://localhost:5000/api/brand/${id}`)
+        const res = await axios.get(`${baseUrl}/api/brand/${id}`)
         return res.data
     } catch (e) {
         console.log(e)
@@ -97,7 +99,7 @@ export const getBrandById = async (id) => {
 
 export const addType = async (name) => {
     try {
-        const res = await axios.post('http://localhost:5000/api/type', {
+        const res = await axios.post(`${baseUrl}/api/type`, {
             name: name
         })
 
@@ -110,7 +112,7 @@ export const addType = async (name) => {
 
 export const addBrand = async (name) => {
     try {
-        const res = await axios.post('http://localhost:5000/api/brand', {
+        const res = await axios.post(`${baseUrl}/api/brand`, {
             name: name
         })
 
@@ -123,7 +125,7 @@ export const addBrand = async (name) => {
 
 export const addDevice = async (name, price, typeId, brandId, info, img) => {
     try {
-        const res = await axios.post('http://localhost:5000/api/device', {
+        const res = await axios.post(`${baseUrl}/api/device`, {
             name: name,
             price: price,
             typeId: typeId,
@@ -141,7 +143,7 @@ export const addDevice = async (name, price, typeId, brandId, info, img) => {
 
 export const getDeviceDetails = async (id) => {
     try {
-        const res = await axios.get(`http://localhost:5000/api/device/${id}`)
+        const res = await axios.get(`${baseUrl}/api/device/${id}`)
         return res.data
     } catch (e) {
         console.log(e)
@@ -151,7 +153,7 @@ export const getDeviceDetails = async (id) => {
 
 export const addRating = async (userId, deviceId, rate, message) => {
     try {
-        const res = await axios.post("http://localhost:5000/api/rating", {
+        const res = await axios.post(`${baseUrl}/api/rating`, {
             userId,
             deviceId,
             rate,
@@ -167,7 +169,7 @@ export const addRating = async (userId, deviceId, rate, message) => {
 
 export const recalculateRating = async (deviceId) => {
     try {
-        const res = await axios.post("http://localhost:5000/api/device/recalculate-rating", {
+        const res = await axios.post(`${baseUrl}/api/device/recalculate-rating`, {
             deviceId
         })
 
@@ -180,7 +182,7 @@ export const recalculateRating = async (deviceId) => {
 
 export const getRatings = async (deviceId) => {
     try {
-        const res = await axios.get(`http://localhost:5000/api/rating/${deviceId}`)
+        const res = await axios.get(`${baseUrl}/api/rating/${deviceId}`)
         return res.data
     } catch (e) {
         console.log(e)
@@ -190,7 +192,7 @@ export const getRatings = async (deviceId) => {
 
 export const getUser = async (userId) => {
     try {
-        const res = await axios.get(`http://localhost:5000/api/user/${userId}`)
+        const res = await axios.get(`${baseUrl}/api/user/${userId}`)
         return res.data
     } catch (e) {
         console.log(e)
@@ -200,7 +202,7 @@ export const getUser = async (userId) => {
 
 export const checkRating = async (userId, deviceId) => {
     try {
-        const res = await axios.post("http://localhost:5000/api/rating/check", {
+        const res = await axios.post(`${baseUrl}/api/rating/check`, {
             userId,
             deviceId
         })
@@ -216,7 +218,7 @@ export const checkRating = async (userId, deviceId) => {
 
 export const deleteRating = async (id) => {
     try {
-        const res = await axios.delete(`http://localhost:5000/api/rating/${id}`)
+        const res = await axios.delete(`${baseUrl}/api/rating/${id}`)
         return res.data
     } catch (e) {console.log(e)
         console.log(e)
@@ -226,7 +228,7 @@ export const deleteRating = async (id) => {
 
 export const addToBasket = async (userId, item) => {
     try {
-        const res = await axios.post("http://localhost:5000/api/basket/add", {
+        const res = await axios.post(`${baseUrl}/api/basket/add`, {
             userId: userId,
             item: item
         })
@@ -239,7 +241,7 @@ export const addToBasket = async (userId, item) => {
 
 export const removeFromBasket = async (userId, id) => {
     try {
-        const res = await axios.delete("http://localhost:5000/api/basket/remove", {data: {
+        const res = await axios.delete(`${baseUrl}/api/basket/remove`, {data: {
             userId: userId,
             id: id
         }})
@@ -253,7 +255,7 @@ export const removeFromBasket = async (userId, id) => {
 
 export const getBasket = async (userId, limit = 2, page = 1) => {
     try {
-        const res = await axios.get(`http://localhost:5000/api/basket/${userId}?limit=${limit}&page=${page}`)
+        const res = await axios.get(`${baseUrl}/api/basket/${userId}?limit=${limit}&page=${page}`)
         return res.data
     } catch (e) {
         console.log(e)
@@ -263,7 +265,7 @@ export const getBasket = async (userId, limit = 2, page = 1) => {
 
 export const getBasketTotal = async (userId) => {
     try {
-        const res = await axios.get(`http://localhost:5000/api/basket/${userId}/total`)
+        const res = await axios.get(`${baseUrl}/api/basket/${userId}/total`)
         return res.data
     } catch (e) {
         console.log(e)
@@ -273,7 +275,7 @@ export const getBasketTotal = async (userId) => {
 
 export const forgotPassword = async (email) => {
     try {
-        const res = await axios.post(`http://localhost:5000/api/user/forgot-password`, {
+        const res = await axios.post(`${baseUrl}/api/user/forgot-password`, {
             email: email
         })
 
@@ -286,7 +288,7 @@ export const forgotPassword = async (email) => {
 
 export const resetPassword = async (id, token, newPassword) => {
     try {
-        const res = await axios.post("http://localhost:5000/api/user/reset-password", {
+        const res = await axios.post(`${baseUrl}/api/user/reset-password`, {
             id, token, newPassword
         })
 
@@ -299,7 +301,7 @@ export const resetPassword = async (id, token, newPassword) => {
 
 export const checkLink = async (id, token) => {
     try {
-        const res = await axios.get(`http://localhost:5000/api/user/check-link?id=${id}&token=${token}`)
+        const res = await axios.get(`${baseUrl}/api/user/check-link?id=${id}&token=${token}`)
         return res.data
     } catch (e) {
         console.log(e)
