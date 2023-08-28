@@ -1,0 +1,40 @@
+.outer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+}
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: white;
+    min-width: 50%;
+    padding: 20px;
+    z-index: 10000;
+}
+
+.element {
+    width: 100%;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    padding: 15px;
+}
+
+.element:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.element > p {
+    margin: 0;
+}
+
+.active {
+    color: deepskyblue;
+}

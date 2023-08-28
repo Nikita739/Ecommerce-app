@@ -42,3 +42,25 @@
 .active .item {
     color: deepskyblue;
 }
+
+.regularNavbar {
+    display: flex;
+}
+
+.menuNavbar {
+    display: none;
+}
+
+.displayNone {
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    .regularNavbar {
+        display: none;
+    }
+
+    .menuNavbar {
+        display: block;
+    }
+}
