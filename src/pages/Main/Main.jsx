@@ -6,43 +6,49 @@ import DevicesDisplay from "../../components/DevicesDisplay/DevicesDisplay";
 import MainPagination from "../../components/Pagination/MainPagination";
 
 const Main = () => {
-    const PER_PAGE = 1
+    const PER_PAGE = 1;
 
-    const [types, setTypes] = useState([])
-    const [type, setType] = useState(0)
+    const [types, setTypes] = useState([]);
+    const [type, setType] = useState(0);
+    const [typesLoading, setTypesLoading] = useState(false);
 
-    const [brands, setBrands] = useState([])
-    const [brand, setBrand] = useState(0)
+    const [brands, setBrands] = useState([]);
+    const [brand, setBrand] = useState(0);
+    const [brandsLoading, setBrandsLoading] = useState(false);
 
-    const [devices, setDevices] = useState([])
-    const [devicesCount, setDevicesCount] = useState(0)
+    const [devices, setDevices] = useState([]);
+    const [devicesCount, setDevicesCount] = useState(0);
+    const [devicesLoading, setDevicesLoading] = useState(false);
 
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
+        setTypesLoading(true);
         getTypes().then(res => {
-            setTypes([{id: 0, name: "All"}, ...res])
-        })
+            setTypes([{id: 0, name: "All"}, ...res]);
+            setTypesLoading(false);
+        });
+
+        setBrandsLoading(true);
         getBrands().then(res => {
-            setBrands([{id: 0, name: "All"}, ...res])
-        })
+            setBrands([{id: 0, name: "All"}, ...res]);
+            setBrandsLoading(false);
+        });
+
+        setDevicesLoading(true);
         getDevices(null, null, PER_PAGE, page).then(res => {
-            setDevices(res.rows)
-            setDevicesCount(Math.ceil(res.count / PER_PAGE))
-        })
+            setDevices(res.rows);
+            setDevicesCount(Math.ceil(res.count / PER_PAGE));
+            setDevicesLoading(false);
+        });
     }, [])
 
     const reloadDevices = (type, brand) => {
-        let values = [null, null, PER_PAGE, page]
-        if(type !== 0) {
-            values[0] = type
-        }
-        if(brand !== 0) {
-            values[1] = brand
-        }
-        getDevices(...values).then(res => {
-            setDevices(res.rows)
-            setDevicesCount(Math.ceil(res.count / PER_PAGE))
+        setDevicesLoading(true);
+        getDevices(type !== 0 ? type : null, brand !== 0 ? brand : null, PER_PAGE, page).then(res => {
+            setDevices(res.rows);
+            setDevicesCount(Math.ceil(res.count / PER_PAGE));
+            setDevicesLoading(false);
         })
     }
 
@@ -54,11 +60,11 @@ const Main = () => {
     return (
         <div className={cl.outer}>
             <div className={cl.sidebar}>
-                <OpenSelect style={{marginBottom: '40px'}} options={types} currentOption={type} setCurrentOption={setType} />
-                <OpenSelect options={brands} currentOption={brand} setCurrentOption={setBrand} />
+                <OpenSelect isLoading={typesLoading} style={{marginBottom: '40px'}} options={types} currentOption={type} setCurrentOption={setType} />
+                <OpenSelect isLoading={brandsLoading} options={brands} currentOption={brand} setCurrentOption={setBrand} />
             </div>
             <div className={cl.main}>
-                <DevicesDisplay devices={devices} />
+                <DevicesDisplay isLoading={devicesLoading} devices={devices} perPage={PER_PAGE} />
                 {devices.length > 0
                     &&
                         <MainPagination page={page} setPage={setPage} pagesCount={devicesCount} />
