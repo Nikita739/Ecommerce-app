@@ -1,7 +1,7 @@
 import axios from "axios";
 import {drawerClasses} from "@mui/material";
 
-const baseUrl = "https://online-shop-api-7gcz.onrender.com";
+export const baseUrl = "https://online-shop-api-7gcz.onrender.com";
 
 export const login = async (email, password) => {
     try {

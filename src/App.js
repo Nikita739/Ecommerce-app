@@ -4,6 +4,7 @@ import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import jwt from 'jwt-decode'
 import Navbar from "./components/Navbar/Navbar";
+import {baseUrl} from "./http/requests";
 
 export const AuthContext = createContext(null)
 
@@ -20,7 +21,7 @@ function App() {
 
         axios({
             method: 'get',
-            url: 'http://localhost:5000/api/user/auth',
+            url: `${baseUrl}/api/user/auth`,
             headers: {
                 'Authorization': `Bearer ${token}`
             }
