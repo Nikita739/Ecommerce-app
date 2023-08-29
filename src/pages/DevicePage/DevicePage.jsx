@@ -19,8 +19,10 @@ const DevicePage = () => {
 
     return (
         <div className={cl.outer}>
-            <DeviceOverview deviceInfo={deviceInfo} />
-            <DeviceRating deviceId={id} />
+            <div className={cl.contentWrapper}>
+                <DeviceOverview deviceInfo={deviceInfo} />
+                <DeviceRating deviceId={id} />
+            </div>
         </div>
     );
 };

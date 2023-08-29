@@ -4,20 +4,18 @@ import BasketCard from "../BasketCard/BasketCard";
 import {removeFromBasket} from "../../http/requests";
 import {Skeleton} from "@mui/material";
 
-const BasketItems = ({items, reloadBasket, uid, loading}) => {
-    const deleteCard = (id) => {
-        console.log(id)
+const BasketItems = ({items, uid, loading, setItems, totalPrice, setTotalPrice}) => {
+    const deleteCard = (id, index, price) => {
         removeFromBasket(uid, id.toString()).then(res => {
-            console.log(res)
-            reloadBasket()
-        })
+            setItems(items.toSpliced(index, 1));
+            setTotalPrice(totalPrice - price);
+        });
     }
 
     return (
         <div className={cl.outer}>
             <h1 className={cl.title}>Your basket</h1>
             <div className={cl.cards}>
-
                 {loading
                     ?
                         <div>
@@ -30,7 +28,7 @@ const BasketItems = ({items, reloadBasket, uid, loading}) => {
                         items.length > 0
                             ?
                                 items.map((el, index) =>
-                                    <BasketCard key={index} itemFull={el} deleteCard={deleteCard} />
+                                    <BasketCard key={index} itemFull={el} deleteCard={deleteCard} index={index} />
                                 )
                             :
                                 <p className={cl.noItems}>Nothing to show</p>

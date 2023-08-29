@@ -5,25 +5,25 @@ import {AuthContext} from "../../App";
 import {addToBasket} from "../../http/requests";
 
 const DeviceOverview = ({deviceInfo}) => {
-    let decodedInfo = null
+    let decodedInfo = null;
 
     if(deviceInfo.info) {
-        decodedInfo = JSON.parse(deviceInfo.info)
+        decodedInfo = JSON.parse(deviceInfo.info);
     }
 
-    const [auth, setAuth] = useContext(AuthContext)
-    const [snackOpen, setSnackOpen] = useState(false)
+    const [auth] = useContext(AuthContext);
+    const [snackOpen, setSnackOpen] = useState(false);
 
     const addItem = () => {
-        const device = deviceInfo
-        const userId = auth.user.id
+        const device = deviceInfo;
+        const userId = auth.user.id;
 
-        console.log(device)
+        console.log(device);
 
         addToBasket(userId, device).then(res => {
-            console.log(res)
+            console.log(res);
             if(res.id) {
-                setSnackOpen(true)
+                setSnackOpen(true);
             }
         })
     }
@@ -38,7 +38,7 @@ const DeviceOverview = ({deviceInfo}) => {
             <div className={cl.firstRow}>
                 {deviceInfo.img
                     ?
-                        <img alt={deviceInfo.name} src={deviceInfo.img} width={400} />
+                        <img className={cl.deviceImage} alt={deviceInfo.name} src={deviceInfo.img} />
                     :
                         <Skeleton variant="rectangular" width={400} height={200} />
                 }

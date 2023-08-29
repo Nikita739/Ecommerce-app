@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import cl from './Navbar.module.css'
 import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../App";
-import IconButton from "../../UI/IconButton";
+import IconButton from "../../UI/IconButton/IconButton";
 import NavMenu from "../NavMenu/NavMenu";
 
 const Navbar = () => {

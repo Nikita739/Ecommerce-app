@@ -3,15 +3,15 @@ import cl from './BasketCard.module.css'
 import {getBrandById, getTypeById} from "../../http/requests";
 import { Transition } from 'react-transition-group';
 
-const BasketCard = ({itemFull, deleteCard}) => {
+const BasketCard = ({itemFull, deleteCard, index}) => {
     const [item, setItem] = useState(itemFull.item)
 
     useEffect(() => {
-        setItem(itemFull.item)
-    }, [itemFull])
+        setItem(itemFull.item);
+    }, [itemFull]);
 
-    const [info, setInfo] = useState("")
-    const [visible, setVisible] = useState(true)
+    const [info, setInfo] = useState("");
+    const [visible, setVisible] = useState(true);
 
     useEffect(() => {
         getBrandById(item.brandId).then(brand => {
@@ -22,11 +22,8 @@ const BasketCard = ({itemFull, deleteCard}) => {
     }, [])
 
     const remove = () => {
-        setVisible(false)
-        setTimeout(() => {
-            console.log("================================ DELETE ====================================")
-            deleteCard(itemFull.id)
-        }, 500)
+        setVisible(false);
+        deleteCard(itemFull.id, index, item.price);
     }
 
     return (

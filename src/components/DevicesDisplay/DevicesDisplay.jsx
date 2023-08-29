@@ -1,15 +1,15 @@
 import React from 'react';
 import DeviceCard from "../DeviceCard/DeviceCard";
 import cl from './DevicesDisplay.module.css'
-import {CircularProgress, Skeleton} from "@mui/material";
+import {Skeleton} from "@mui/material";
 
 const DevicesDisplay = ({devices, isLoading=false, perPage=50}) => {
     return (
         <div className={cl.outer}>
             {isLoading
                 ?
-                    [...Array(perPage)].map(el =>
-                        <Skeleton style={{margin: 20}} variant="rounded" width={300} height={268} />
+                    [...Array(perPage)].map((el, index) =>
+                        <Skeleton key={index} style={{margin: 20}} variant="rounded" width={300} height={268} />
                     )
                 :
                     devices.length > 0
